@@ -8,9 +8,10 @@ spring:
     password: root
   jpa:
     show-sql: true
-    properties:   
-      hibernate:
-        ddl-auto: update
+    open-in-view: false
+    hibernate:
+      ddl-auto: update 
+    properties:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         jdbc:
           lob:
