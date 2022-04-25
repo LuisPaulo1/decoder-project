@@ -1,4 +1,4 @@
-package com.ead.authuser.service.impl;
+package com.ead.authuser.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.ead.authuser.models.UserModel;
 import com.ead.authuser.repositories.UserRepository;
-import com.ead.authuser.service.UserService;
+import com.ead.authuser.services.UserService;
 
 @Service
 public class UserServiceImpl implements UserService {

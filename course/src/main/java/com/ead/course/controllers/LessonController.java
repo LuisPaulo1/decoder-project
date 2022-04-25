@@ -27,8 +27,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ead.course.dtos.LessonDto;
 import com.ead.course.models.LessonModel;
 import com.ead.course.models.ModuleModel;
-import com.ead.course.service.LessonService;
-import com.ead.course.service.ModuleService;
+import com.ead.course.services.LessonService;
+import com.ead.course.services.ModuleService;
 import com.ead.course.specifications.SpecificationTemplate;
 
 import lombok.extern.log4j.Log4j2;

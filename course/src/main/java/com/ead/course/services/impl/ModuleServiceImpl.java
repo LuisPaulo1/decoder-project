@@ -1,4 +1,4 @@
-package com.ead.course.service.impl;
+package com.ead.course.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,7 +16,7 @@ import com.ead.course.models.LessonModel;
 import com.ead.course.models.ModuleModel;
 import com.ead.course.repositories.LessonRepository;
 import com.ead.course.repositories.ModuleRepository;
-import com.ead.course.service.ModuleService;
+import com.ead.course.services.ModuleService;
 
 @Service
 public class ModuleServiceImpl implements ModuleService {

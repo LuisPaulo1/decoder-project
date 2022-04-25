@@ -1,4 +1,4 @@
-package com.ead.authuser.service;
+package com.ead.authuser.services;
 
 import java.util.List;
 import java.util.Optional;

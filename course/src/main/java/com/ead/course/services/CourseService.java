@@ -1,4 +1,4 @@
-package com.ead.course.service;
+package com.ead.course.services;
 
 import java.util.Optional;
 import java.util.UUID;

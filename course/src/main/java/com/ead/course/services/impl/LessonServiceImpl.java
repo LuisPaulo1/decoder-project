@@ -1,4 +1,4 @@
-package com.ead.course.service.impl;
+package com.ead.course.services.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.ead.course.models.LessonModel;
 import com.ead.course.repositories.LessonRepository;
-import com.ead.course.service.LessonService;
+import com.ead.course.services.LessonService;
 
 @Service
 public class LessonServiceImpl implements LessonService {
