@@ -16,3 +16,8 @@ spring:
         jdbc:
           lob:
             non-contextual-creation: true
+
+ead:
+  api:
+    url:
+      authuser: 'http://localhost:8087'
