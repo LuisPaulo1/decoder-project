@@ -20,6 +20,8 @@ spring:
         jdbc:
           lob:
             non-contextual-creation: true
+  #rabbitmq:
+    #addresses:           
 
 ead:
   api:

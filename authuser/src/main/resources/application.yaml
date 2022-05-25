@@ -23,6 +23,8 @@ spring:
   output:
     ansi:
       enabled: always
+  #rabbitmq:
+    #addresses:
 
 logging:
   level:
