@@ -12,7 +12,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ead.authuser.clients.CourseClient;
+import com.ead.authuser.enums.ActionType;
 import com.ead.authuser.models.UserModel;
+import com.ead.authuser.publishers.UserEventPublisher;
 import com.ead.authuser.repositories.UserRepository;
 import com.ead.authuser.services.UserService;
 
@@ -25,15 +27,13 @@ public class UserServiceImpl implements UserService {
 	@Autowired
     CourseClient courseClient;
 	
+	@Autowired
+	UserEventPublisher userEventPublisher;
+	
 	@Override
 	public List<UserModel> findAll() {
 		return userRepository.findAll();
-	}
-		
-	@Override
-	public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
-		return userRepository.findAll(spec, pageable);
-	}
+	}		
 
 	@Override
 	public Optional<UserModel> findById(UUID id) {
@@ -46,10 +46,10 @@ public class UserServiceImpl implements UserService {
         userRepository.delete(userModel);
     }
 
-	@Override
-	public void save(UserModel userModel) {
-		userRepository.save(userModel);		
-	}
+    @Override
+    public UserModel save(UserModel userModel) {
+        return userRepository.save(userModel);
+    }
 
 	@Override
 	public boolean existsByUsername(String username) {		
@@ -60,4 +60,17 @@ public class UserServiceImpl implements UserService {
 	public boolean existsByEmail(String email) {		
 		return userRepository.existsByEmail(email);
 	}
+	
+	@Override
+	public Page<UserModel> findAll(Specification<UserModel> spec, Pageable pageable) {
+		return userRepository.findAll(spec, pageable);
+	}
+	
+    @Transactional
+    @Override
+    public UserModel saveUser(UserModel userModel){
+        userModel = save(userModel);
+        userEventPublisher.publishUserEvent(userModel.convertToUserEventDto(), ActionType.CREATE);
+        return userModel;
+    }
 }
