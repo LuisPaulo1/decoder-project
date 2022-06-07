@@ -1,66 +1,9 @@
-server:
-  port: 8087
-  servlet:
-    context-path: '/ead-authuser/'
-
 spring:
   application:
     name: ead-authuser-service
-  datasource:
-    url: jdbc:postgresql://localhost:5432/ead-authuser-v2
-    username: postgres
-    password: root
-  jpa:
-    show-sql: true
-    open-in-view: false
-    hibernate:
-      ddl-auto: update
-    properties:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        jdbc:
-          lob:
-            non-contextual-creation: true
-  output:
-    ansi:
-      enabled: always
-  #rabbitmq:
-    #addresses:
-
-logging:
-  level:
-    com.ead: TRACE
-    root: INFO
-    org.springframework.web: DEBUG
-    org.hibernate: INFO
-
-ead:
-  api:
-    url:
-      course: 'http://ead-course-service/ead-course'
-  broker:
-    exchange:
-      userEvent: ead.userevent      
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: 'http://localhost:8761/eureka'
-  instance:
-    hostname: localhost
-
-resilience4j:
-  circuitbreaker:
-    instances:
-      circuitbreakerInstance:
-        slidingWindowType: time-based #Tipo de circuit Breaker. Baseado em tempo
-        minimumNumberOfCalls: 2 #Minimo de chamadas para começar a analisar. A partir da 3 chamada começa a analisar
-        slidingWindowSize: 30 #Intervalo de tempo que as requisições vão ser analisadas
-        failureRateThreshold: 80 #Se a quantidade de falhas alcançar 80% o estado muda de CLOSE para OPEN
-        waitDurationInOpenState: 30s #Intervalo de tempo que o circuit breaker fica no estado OPEN. Depois que passa desse intervalo o estado vai para o HALF-OPEN
-        permittedNumberOfCallsInHalfOpenState: 2 # Número de chamadas feitas no estado HALF-OPEN para verificar se o serviço está disponível
-                
-  retry:
-    instances:
-      retryInstance:
-        max-attempts: 3 # Limite máximo de tentativas
-        wait-duration: 5s # Intervalo de tempo entre as tentativas
+  config:
+    import: 'configserver:'
+  cloud:
+    config:
+      discovery:
+        serviceId: ead-config-server
