@@ -1,5 +1,9 @@
 package com.ead.notification.services;
 
-public interface NotificationService {   
+import com.ead.notification.models.NotificationModel;
+
+public interface NotificationService {
+	
+	NotificationModel saveNotification(NotificationModel notificationModel);
     
 }
